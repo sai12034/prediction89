@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Premium Plans – CricMaster Tips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --bg:#04080f;--bg2:#080e1a;--bg3:#0d1525;--bg4:#111d33;
+      --gold:#f5c518;--gold2:#ff9500;
+      --green:#00ff88;--cyan:#00d4ff;--red:#ff3b3b;
+      --text:#e8f0ff;--muted:#6b80a8;
+      --border:rgba(255,255,255,0.07);--r:14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 70% 60% at 20% 30%,rgba(245,197,24,0.07) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 80% 70%,rgba(0,255,136,0.06) 0%,transparent 55%);pointer-events:none}
+    body::after{content:'';position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,255,136,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+    .wrap{position:relative;z-index:1}
+
+    nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;background:rgba(4,8,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,255,136,.12)}
+    .logo{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;letter-spacing:.1em;background:linear-gradient(135deg,var(--gold),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{font-weight:600;font-size:.9rem;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;transition:color .2s;padding-bottom:2px;border-bottom:2px solid transparent}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold)}
+    .nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:700;font-size:.85rem;padding:.55rem 1.4rem;border-radius:50px;text-transform:uppercase;letter-spacing:.07em;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(245,197,24,.35)}
+    .nav-cta:hover{transform:translateY(-2px)}
+
+    /* PAGE HERO */
+    .page-hero{
+      padding:6rem 2rem 5rem;
+      text-align:center;
+      background:linear-gradient(180deg,rgba(245,197,24,0.05) 0%,transparent 100%);
+      border-bottom:1px solid var(--border);
+      position:relative;overflow:hidden;
+    }
+    .page-hero::before{
+      content:'🏆';position:absolute;font-size:20rem;opacity:0.025;
+      top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+    }
+    .page-hero h1{font-family:'Teko',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);letter-spacing:.04em;line-height:1}
+    .page-hero h1 span{background:linear-gradient(135deg,var(--gold),var(--gold2),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .page-hero p{color:var(--muted);font-size:1.1rem;max-width:600px;margin:1rem auto 0;line-height:1.6}
+
+    .section{padding:5rem 0;position:relative;z-index:1}
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+    .sec-head{text-align:center;margin-bottom:3.5rem}
+    .sec-head h2{font-family:'Teko',sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:.04em;margin-bottom:.5rem}
+    .sec-head p{color:var(--muted)}
+
+    /* PLANS */
+    .plans-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.75rem}
+    .plan-card{background:linear-gradient(145deg,var(--bg3),var(--bg4));border:1px solid var(--border);border-radius:20px;padding:2.25rem 2rem;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+    .plan-card:hover{transform:translateY(-6px)}
+    .plan-card.featured{border-color:var(--gold);background:linear-gradient(145deg,#0f1d09,#172b0e);box-shadow:0 0 60px rgba(245,197,24,.12)}
+    .plan-card.featured:hover{box-shadow:0 20px 60px rgba(245,197,24,.3)}
+    .plan-topbar{height:4px;border-radius:4px;margin-bottom:1.75rem;background:linear-gradient(90deg,var(--green),var(--cyan))}
+    .plan-topbar.gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+    .plan-topbar.cyan{background:linear-gradient(90deg,var(--cyan),#7b2fff)}
+    .popular-tag{position:absolute;top:1rem;right:1rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-size:.7rem;font-weight:700;padding:.25rem .7rem;border-radius:50px;text-transform:uppercase;letter-spacing:.06em}
+    .plan-name{font-family:'Teko',sans-serif;font-size:1.4rem;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem}
+    .plan-price{font-family:'Teko',sans-serif;font-size:3.5rem;line-height:1;background:linear-gradient(135deg,var(--gold),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.25rem}
+    .plan-price span{font-size:1rem;color:var(--muted);font-family:'Rajdhani',sans-serif;-webkit-text-fill-color:var(--muted)}
+    .plan-desc{color:var(--muted);font-size:.875rem;margin-bottom:1.75rem}
+    .plan-features{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+    .pf{display:flex;align-items:center;gap:.6rem;font-size:.9rem;font-weight:500}
+    .pf.off{color:rgba(255,255,255,.25)}
+    .btn-plan{width:100%;padding:.85rem;border-radius:50px;border:none;cursor:pointer;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.07em;transition:transform .15s,box-shadow .15s;font-family:'Rajdhani',sans-serif}
+    .btn-plan.g{background:linear-gradient(135deg,var(--green),var(--cyan));color:#000;box-shadow:0 4px 20px rgba(0,255,136,.3)}
+    .btn-plan.g:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(0,255,136,.5)}
+    .btn-plan.au{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;box-shadow:0 4px 20px rgba(245,197,24,.3)}
+    .btn-plan.au:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(245,197,24,.5)}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem}
+    .modal-overlay.open{display:flex}
+    .modal{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid rgba(245,197,24,.3);border-radius:24px;padding:2.5rem;max-width:480px;width:100%;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 0 80px rgba(245,197,24,.15)}
+    .modal-close{position:absolute;top:1.25rem;right:1.5rem;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);font-size:1rem;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .modal h2{font-family:'Teko',sans-serif;font-size:2rem;letter-spacing:.04em;margin-bottom:1.25rem}
+    .sel-plan-tag{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.3);border-radius:10px;padding:.75rem 1rem;font-weight:700;color:var(--gold);margin-bottom:1.5rem}
+    .upi-box{background:var(--bg4);border:2px solid var(--gold);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;margin:.75rem 0}
+    .upi-id-txt{font-family:monospace;font-size:1.2rem;color:var(--gold);letter-spacing:.05em}
+    .copy-btn{background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:var(--gold);padding:.4rem .9rem;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:700}
+    .pay-steps{background:var(--bg4);border-radius:12px;padding:1.25rem;margin:1.25rem 0}
+    .pay-steps h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.75rem}
+    .pay-step{display:flex;align-items:center;gap:.75rem;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+    .pay-step:last-child{border:none}
+    .step-num{width:24px;height:24px;flex-shrink:0;background:linear-gradient(135deg,var(--green),var(--cyan));color:#000;font-weight:700;font-size:.75rem;border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .btn-wa{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.9rem;border-radius:50px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.07em;border:none;cursor:pointer;transition:transform .15s;margin-top:1rem}
+    .btn-wa:hover{transform:translateY(-2px)}
+
+    /* PREMIUM TIPS DISPLAY */
+    .tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.5rem}
+    .tip-card{background:linear-gradient(145deg,var(--bg3),var(--bg4));border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:transform .2s,border-color .2s}
+    .tip-card:hover{transform:translateY(-4px);border-color:rgba(245,197,24,.3)}
+    .tip-glow-bar{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--green))}
+    .tc-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .tc-match{font-weight:700;font-size:1rem}
+    .badge-premium{background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:var(--gold);font-size:.7rem;font-weight:700;padding:.2rem .65rem;border-radius:50px;letter-spacing:.06em;text-transform:uppercase}
+    .tc-body{padding:1.25rem;display:flex;flex-direction:column;gap:.7rem}
+    .tc-row strong{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:.1rem}
+    .tc-val{color:var(--text);font-weight:600}
+    .tc-tip-val{color:var(--gold);font-weight:700;font-size:1rem;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);padding:.4rem .75rem;border-radius:8px;display:inline-block}
+
+    /* VERIFY */
+    .verify-section{background:var(--bg2);border-top:1px solid var(--border)}
+    .verify-box{max-width:500px;margin:0 auto;text-align:center;padding:3rem 1.5rem}
+    .verify-box h2{font-family:'Teko',sans-serif;font-size:2.2rem;letter-spacing:.04em;margin-bottom:.5rem}
+    .verify-box p{color:var(--muted);margin-bottom:1.5rem}
+    .verify-form{display:flex;gap:1rem;margin-bottom:1rem}
+    .verify-form input{flex:1;background:var(--bg4);border:1.5px solid var(--border);color:var(--text);padding:.75rem 1rem;border-radius:50px;font-family:'Rajdhani',sans-serif;font-size:1rem;text-align:center;letter-spacing:.05em}
+    .verify-form input:focus{outline:none;border-color:var(--gold)}
+    .btn-unlock{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:700;font-size:.95rem;padding:.78rem 1.75rem;border-radius:50px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.07em;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(245,197,24,.3)}
+    .btn-unlock:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(245,197,24,.5)}
+    .hint{font-size:.8rem;color:var(--muted)}
+    .access-msg{font-weight:700;margin-top:1rem;font-size:.95rem}
+
+    footer{background:#020508;border-top:1px solid var(--border);padding:2.5rem 0 1.5rem}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+    .footer-logo{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .footer-bottom{padding-top:1.25rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-bottom p{font-size:.8rem;color:var(--muted)}
+    .disc{color:rgba(255,120,120,.6)!important}
+
+    @media(max-width:768px){nav .nav-links{display:none}.verify-form{flex-direction:column}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <div class="logo">🏏 CRICMASTER</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#free-tips">Free Tips</a></li>
+    <li><a href="premium.html" class="active">Premium</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="#plans" class="nav-cta">Subscribe Now</a>
+</nav>
+
+<div class="page-hero">
+  <h1>PREMIUM <span>PLANS</span></h1>
+  <p>Pay directly via UPI — No middleman, no extra charges. Instant access after payment confirmation on WhatsApp.</p>
+</div>
+
+<section class="section" id="plans">
+  <div class="container">
+    <div class="plans-grid" id="plansGrid"></div>
+  </div>
+</section>
+
+<section class="verify-section section">
+  <div class="container">
+    <div class="verify-box">
+      <h2>ALREADY A <span style="color:var(--gold)">MEMBER?</span></h2>
+      <p>Enter your access code to unlock all premium tips for today</p>
+      <div class="verify-form">
+        <input type="text" id="accessCode" placeholder="ENTER ACCESS CODE" />
+        <button class="btn-unlock" onclick="verifyAccess()">Unlock</button>
+      </div>
+      <p class="hint">You'll receive your code on WhatsApp after payment is confirmed.</p>
+      <div id="accessMsg" class="access-msg"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="premiumSection" style="display:none">
+  <div class="container">
+    <div class="sec-head">
+      <h2>TODAY'S <span style="color:var(--gold)">PREMIUM TIPS</span></h2>
+      <p>Exclusive predictions for members only</p>
+    </div>
+    <div class="tips-grid" id="premiumGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">🏏 CRICMASTER</div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <a href="index.html" style="color:var(--muted);font-size:.875rem;font-weight:600">Home</a>
+        <a href="index.html#free-tips" style="color:var(--muted);font-size:.875rem;font-weight:600">Free Tips</a>
+        <a href="index.html#contact" style="color:var(--muted);font-size:.875rem;font-weight:600">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="disc">⚠️ Tips are for informational purposes only. Gamble responsibly.</p>
+      <p>© 2025 CricMaster Tips</p>
+    </div>
+  </div>
+</footer>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2>💰 COMPLETE PAYMENT</h2>
+    <div class="sel-plan-tag" id="selPlan">— Plan Selected —</div>
+    <p style="color:var(--muted);font-size:.875rem;margin-bottom:.5rem">Send payment to this UPI ID:</p>
+    <div class="upi-box">
+      <span class="upi-id-txt" id="modalUPI">yourname@upi</span>
+      <button class="copy-btn" onclick="copyUPI()">📋 Copy</button>
+    </div>
+    <div class="pay-steps">
+      <h3>Steps to Subscribe</h3>
+      <div class="pay-step"><span class="step-num">1</span>Copy the UPI ID above</div>
+      <div class="pay-step"><span class="step-num">2</span>Open GPay / PhonePe / Paytm</div>
+      <div class="pay-step"><span class="step-num">3</span>Send exact amount to UPI ID</div>
+      <div class="pay-step"><span class="step-num">4</span>Screenshot the confirmation</div>
+      <div class="pay-step"><span class="step-num">5</span>Send screenshot on WhatsApp below</div>
+      <div class="pay-step"><span class="step-num">6</span>Get Telegram access within 1 hour!</div>
+    </div>
+    <a href="#" class="btn-wa" id="modalWA">📱 Send Screenshot on WhatsApp</a>
+  </div>
+</div>
+
+<script>
+const S=JSON.parse(localStorage.getItem('adminSettings')||'{}');
+
+function buildPlans(){
+  const plans=[
+    {name:'Weekly',price:S.weeklyPrice||'199',period:'week',bar:'',btn:'g',items:['All Match Tips (7 Days)','Toss Predictions','Telegram Access'],no:['Fantasy Advice','Sure Shot Picks','Priority WhatsApp']},
+    {name:'Monthly',price:S.monthlyPrice||'599',period:'month',bar:'gold',btn:'au',popular:true,items:['All Match Tips (30 Days)','Toss Predictions','Telegram Access','Fantasy Advice','Sure Shot Picks'],no:['Priority WhatsApp']},
+    {name:'Season',price:S.seasonPrice||'1499',period:'season',bar:'cyan',btn:'g',items:['All Match Tips (Season)','Toss Predictions','Telegram Access','Fantasy Advice','Sure Shot Picks','Priority WhatsApp'],no:[]},
+  ];
+  const g=document.getElementById('plansGrid');
+  plans.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='plan-card'+(p.popular?' featured':'');
+    d.innerHTML=`<div class="plan-topbar ${p.bar}"></div>
+      ${p.popular?'<span class="popular-tag">🔥 Most Popular</span>':''}
+      <div class="plan-name">${p.name} Plan</div>
+      <div class="plan-price">₹${p.price}<span>/${p.period}</span></div>
+      <div class="plan-desc">Instant access after UPI payment</div>
+      <div class="plan-features">
+        ${p.items.map(f=>`<div class="pf">✅ ${f}</div>`).join('')}
+        ${p.no.map(f=>`<div class="pf off">❌ ${f}</div>`).join('')}
+      </div>
+      <button class="btn-plan ${p.btn}" onclick="openModal('${p.name} Plan — ₹${p.price}')">Subscribe Now</button>`;
+    g.appendChild(d);
+  });
+}
+
+function openModal(plan){
+  const upi=S.upiId||'yourname@upi';
+  document.getElementById('selPlan').textContent='📦 '+plan;
+  document.getElementById('modalUPI').textContent=upi;
+  document.getElementById('modalWA').href=`https://wa.me/${S.whatsapp||'91XXXXXXXXXX'}?text=Hi%2C+I+paid+for+${encodeURIComponent(plan)}`;
+  document.getElementById('payModal').classList.add('open');
+}
+function closeModal(){document.getElementById('payModal').classList.remove('open')}
+function copyUPI(){
+  navigator.clipboard.writeText(document.getElementById('modalUPI').textContent);
+  const b=document.querySelector('.copy-btn');b.textContent='✅ Copied!';
+  setTimeout(()=>b.textContent='📋 Copy',2000);
+}
+
+function verifyAccess(){
+  const code=document.getElementById('accessCode').value.trim().toUpperCase();
+  const codes=JSON.parse(localStorage.getItem('accessCodes')||'[]');
+  const msg=document.getElementById('accessMsg');
+  if(codes.includes(code)){
+    sessionStorage.setItem('premiumAccess','true');
+    msg.textContent='✅ Access granted! Loading your tips...';
+    msg.style.color='var(--green)';
+    setTimeout(loadPremiumTips,500);
+  } else {
+    msg.textContent='❌ Invalid code. Contact us on WhatsApp.';
+    msg.style.color='var(--red)';
+  }
+}
+
+function loadPremiumTips(){
+  const tips=JSON.parse(localStorage.getItem('premiumTips')||'[]');
+  const grid=document.getElementById('premiumGrid');
+  const sec=document.getElementById('premiumSection');
+  sec.style.display='block';
+  const today=new Date().toDateString();
+  const todays=tips.filter(t=>new Date(t.date).toDateString()===today);
+  if(!todays.length){
+    grid.innerHTML='<div style="text-align:center;color:var(--muted);padding:3rem">No premium tips posted yet for today. Check back soon!</div>';
+    return;
+  }
+  todays.forEach(tip=>{
+    const c=document.createElement('div');
+    c.className='tip-card';
+    c.innerHTML=`<div class="tip-glow-bar"></div>
+      <div class="tc-header"><span class="tc-match">${tip.match}</span><span class="badge-premium">PREMIUM</span></div>
+      <div class="tc-body">
+        <div class="tc-row"><strong>📅 Date / Time</strong><span class="tc-val">${tip.dateTime}</span></div>
+        <div class="tc-row"><strong>🎯 Prediction</strong><span class="tc-tip-val">${tip.tip}</span></div>
+        ${tip.sureShot==='Yes'?`<div class="tc-row"><strong>🔥 Sure Shot</strong><span class="tc-val" style="color:var(--gold)">YES 🔥</span></div>`:''}
+        <div class="tc-row"><strong>📊 Confidence</strong><span class="tc-val" style="color:var(--green)">${tip.confidence}</span></div>
+        ${tip.fantasy?`<div class="tc-row"><strong>🏆 Fantasy Pick</strong><span class="tc-val">${tip.fantasy}</span></div>`:''}
+        ${tip.notes?`<div class="tc-row"><strong>📝 Analysis</strong><span class="tc-val">${tip.notes}</span></div>`:''}
+      </div>`;
+    grid.appendChild(c);
+  });
+}
+
+if(sessionStorage.getItem('premiumAccess')==='true') loadPremiumTips();
+buildPlans();
+</script>
+</div>
+</body>
+</html>
